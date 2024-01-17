@@ -44,7 +44,14 @@ namespace L11UkolSpravaUctu
             }
             set
             {
-                _balance = value;
+                try
+                {
+                    _balance = value;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
 
