@@ -46,9 +46,17 @@ namespace L11UkolSpravaUctu
             {
                 try
                 {
-                    _balance = value;
+                    if (value < 0)
+                    {
+                        throw new ArgumentOutOfRangeException ("value", "Hodnota na účtu nemůže být menší než nula.");
+                    }
+                    else { _balance = value; }
                 }
-                catch (FormatException e)
+                catch (ArgumentOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (ArgumentException e)
                 {
                     Console.WriteLine(e.Message);
                 }
@@ -57,16 +65,45 @@ namespace L11UkolSpravaUctu
 
         public void Deposit (decimal depositMoney)
         {
-            Balance = Balance + depositMoney;
+            try
+            {
+                if (depositMoney < 0)
+                {
+                    throw new ArgumentOutOfRangeException("depositMoney", "Na účet nemůže být vloženo negativní číslo.");
+                }
+                else
+                {
+                    Balance = Balance + depositMoney;
+                }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void Withdraw (decimal amount)
         {
-            if (amount < _balance)
+            try
             {
-                _balance -= amount;
-            } else
-            { Console.WriteLine("Na účtu není dost peněz na tento výběr."); }
+                if (amount < _balance)
+                {
+                    if (amount < 0)
+                    {
+                        throw new ArgumentOutOfRangeException("amount", "Hodnota, kterou chceme oderat z účtu nemůže být menší než nula.");
+                    }
+                    else
+                    {
+                        _balance -= amount;
+                    }
+                }
+                else
+                { Console.WriteLine("Na účtu není dost peněz na tento výběr."); }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
