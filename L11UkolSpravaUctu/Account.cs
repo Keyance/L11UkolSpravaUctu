@@ -44,7 +44,6 @@ namespace L11UkolSpravaUctu
             }
             set
             {
-                try
                 {
                     if (value < 0)
                     {
@@ -52,20 +51,11 @@ namespace L11UkolSpravaUctu
                     }
                     else { _balance = value; }
                 }
-                catch (ArgumentOutOfRangeException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
             }
         }
 
         public void Deposit (decimal depositMoney)
         {
-            try
             {
                 if (depositMoney < 0)
                 {
@@ -76,15 +66,10 @@ namespace L11UkolSpravaUctu
                     Balance = Balance + depositMoney;
                 }
             }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
         }
 
         public void Withdraw (decimal amount)
         {
-            try
             {
                 if (amount < _balance)
                 {
@@ -99,10 +84,6 @@ namespace L11UkolSpravaUctu
                 }
                 else
                 { Console.WriteLine("Na účtu není dost peněz na tento výběr."); }
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
             }
         }
     }
