@@ -1,5 +1,6 @@
 ﻿using L11UkolSpravaUctu;
-	Account account = new Account();
+
+Account account = new Account();
 
 try
 {
