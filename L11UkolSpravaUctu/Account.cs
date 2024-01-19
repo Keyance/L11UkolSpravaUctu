@@ -83,7 +83,9 @@ namespace L11UkolSpravaUctu
                     }
                 }
                 else
-                { Console.WriteLine("Na účtu není dost peněz na tento výběr."); }
+                { 
+                    throw new ArgumentOutOfRangeException("amount", "Nemůže být vybráno více peněz, než je na účtu.");
+                }
             }
         }
     }
